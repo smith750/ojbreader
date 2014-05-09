@@ -23,8 +23,15 @@
 	)
 )
 
-(defn -main [& args]
-	(do
-		(read-ojb-file (str BASE-KFS-DIR "sys\\ojb-sys.xml"))
+(defn find-ojb-files [directory-name]
+	(doseq
+		[f (file-seq (io/file directory-name))
+			:when (re-matches #"^ojb-[^\.]+\.xml$" (.getName f))
+			]
+		(read-ojb-file (.getAbsolutePath f))
 	)
+)
+
+(defn -main [& args]
+	(find-ojb-files BASE-KFS-DIR)
 )
