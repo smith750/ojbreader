@@ -13,9 +13,9 @@
 			(doseq
 				[y (:content x)
 					:when (and 
-						(= :field-descriptor (:tag y)) 
-						(contains? (:attrs y) :primarykey) 
-						(= "true" (:primarykey (:attrs y)))
+							(= :field-descriptor (:tag y)) 
+							(contains? (:attrs y) :primarykey) 
+							(= "true" (:primarykey (:attrs y)))
 							)]
 					(println (str "\t" (:name (:attrs y)) ", " (:column (:attrs y))) )
 			)
